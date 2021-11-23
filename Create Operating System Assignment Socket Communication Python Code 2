@@ -1,0 +1,16 @@
+class DateClient(object):
+    @staticmethod
+    def main(args):
+        try:
+            # this could be changed to an IP name or address other than the localhost
+            sock = Socket("127.0.0.1",6013)
+            in_keyword_conflict = sock.getInputStream()
+            bin = BufferedReader(InputStreamReader(in_keyword_conflict))
+            line = None
+#JAVA TO PYTHON CONVERTER TODO TASK: The following assignments within expression was not converted by Java to Python Converter:
+#ORIGINAL LINE: while((line = bin.readLine()) != null)
+            while (line = bin.readLine()) is not None:
+                print(line)
+            sock.close()
+        except IOException as ioe:
+            System.err.println(ioe)
