@@ -1,0 +1,17 @@
+import datetime
+
+class DateServer(object):
+    @staticmethod
+    def main(args):
+        try:
+            sock = ServerSocket(6013)
+            # now listen for connections
+            while True:
+                client = sock.accept()
+                pout = PrintWriter(client.getOutputStream(), True)
+                # write the Date to the socket
+                pout.println(str((datetime.datetime.now())))
+                # close the socket and resume listening for more connections
+                client.close()
+        except IOException as ioe:
+            System.err.println(ioe)
