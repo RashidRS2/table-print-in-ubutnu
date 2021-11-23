@@ -1,0 +1,18 @@
+#include <unistd.h>
+int pipe(int fildes[2]);
+#define MAXLINE 80
+main()
+{
+int n, fd[2];
+char line[MAXLINE];
+pipe(fd);
+if (fork()>0) {
+close(fd[0]);
+write(fd[1], "hello\n", 6);
+}
+else {
+close(fd[1]);
+n = read(fd[0], line, MAXLINE);
+write(1, line, n);
+}
+}
